@@ -1,0 +1,7 @@
+Target MCU: STM32H723ZET6 (H7 series)
+CubeMX hints:
+- Enable RCC HSE or HSI and configure PLL so SYSCLK is within H7 supported range.
+- Enable GPIOA and set PA14 as GPIO_Output.
+- Enable FreeRTOS later if needed (not required for this motor init test).
+- Enable USB Device (CDC) later for serial/ROS.
+- Generate code for STM32CubeIDE (or export Makefile if desired).
