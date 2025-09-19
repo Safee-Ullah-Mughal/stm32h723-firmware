@@ -1,10 +1,11 @@
 name: Build STM32 Firmware
 
 on:
+  workflow_dispatch:       # ✅ lets you run manually
   push:
-    branches: [ "master" ]
+    branches: [ "main" ]   # ✅ now matches your repo
   pull_request:
-    branches: [ "master" ]
+    branches: [ "main" ]
 
 jobs:
   build:
