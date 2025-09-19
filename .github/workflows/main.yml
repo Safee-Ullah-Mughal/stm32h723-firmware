@@ -1,9 +1,8 @@
-name: Build STM32 Firmware
+name: Build Firmware
 
 on:
-  workflow_dispatch:       # ✅ lets you run manually
   push:
-    branches: [ "main" ]   # ✅ now matches your repo
+    branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
 
@@ -15,17 +14,14 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Install ARM GCC Toolchain
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y gcc-arm-none-eabi binutils-arm-none-eabi make
+      - name: Install ARM GCC
+        run: sudo apt-get update && sudo apt-get install -y gcc-arm-none-eabi
 
       - name: Build firmware
-        run: |
-          make
+        run: make
 
-      - name: Upload firmware binary
+      - name: Upload firmware artifact
         uses: actions/upload-artifact@v4
         with:
-          name: firmware-bin
-          path: "**/*.bin"
+          name: firmware
+          path: firmware.elf
