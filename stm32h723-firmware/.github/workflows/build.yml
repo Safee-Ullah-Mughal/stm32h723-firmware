@@ -1,0 +1,31 @@
+name: Build STM32 Firmware
+
+on:
+  push:
+    branches: [ "master", "main" ]
+  pull_request:
+    branches: [ "master", "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Install ARM GCC Toolchain
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y gcc-arm-none-eabi binutils-arm-none-eabi make
+
+    - name: Dummy build step
+      run: |
+        echo "✅ Build system ready. Waiting for Makefile project in next step."
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: firmware
+        path: "*.bin"
+        if-no-files-found: ignore
